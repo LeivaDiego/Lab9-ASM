@@ -60,6 +60,25 @@ mon     DWORD   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ; Creación de IVA
 iva     DWORD   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
+; Montos Anuales
+montot  DWORD   0
+x       DWORD   0
+
+monfrm        BYTE    " Ingrese el Monto de la Factura %d: ",0
+monscnfrm     BYTE    "%d",0
+
+msg1      BYTE     "  Por ende, usted es Pequeño Contribuyente                                             ", 0Ah,0
+msg2      BYTE     "  Por ende, usted debe actualizar estado a Mediano Contribuyente                       ", 0Ah,0
+msg3      BYTE     "| A continuacion debera ingresar los montos correspondientes al presente anio |         ", 0Ah,0
+
+msg4      BYTE     "  El monto generado anualmente por la empresa es de: %d                                                 ",0Ah,0
+sepa      BYTE     "|-----------------------------------------------------------------------------|        ",0Ah,0
+enc1      BYTE     "|                           FACTURAS SAT ANIO 2023                            |        ",0Ah,0
+sep1      BYTE     "                                                                                       ",0Ah,0
+enca      BYTE     "|  Nombre del Cliente  |  Mes Factura |    NIT   |    Monto   |      IVA      |        ",0Ah,0
+
+msg_format BYTE    "| %-20s | %-12s | %-8d | %-10d | %-13d |", 0Ah, 0
+
 .code
 
 public main
