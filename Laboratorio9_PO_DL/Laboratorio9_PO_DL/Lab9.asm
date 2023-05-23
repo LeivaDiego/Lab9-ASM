@@ -156,5 +156,27 @@ main proc
     invoke printf, addr sepa
     invoke printf, addr msg4, montot
 
+
+    ;Determinar Contribuyente e Imprimir
+
+    mov eax, montot
+    mov ebx, 150000
+    cmp eax, ebx
+    jl lp1
+    jg lp2
+
+    lp1:
+        invoke printf, addr msg1
+        jmp endl
+
+    lp2:
+        invoke printf, addr msg2
+
+    endl:
+
+    invoke printf, addr sepa
+    invoke scanf   
+    ret
+
 main endp
 end
