@@ -84,6 +84,11 @@ msg_format BYTE    "| %-20s | %-12s | %-8d | %-10d | %-13d |", 0Ah, 0
 public main
 
 main proc
+
+    invoke printf, addr sepa
+    invoke printf, addr msg3
+    invoke printf, addr sepa
+
 ; Ciclo para ingresar los montos de las facturas
     loop_cic:
         mov esi, offset mon
@@ -110,6 +115,46 @@ main proc
         inc x
         cmp x, 12
         jl loop_cic
+
+
+
+        invoke printf, addr sep1
+    invoke printf, addr sepa
+    invoke printf, addr enc1
+    invoke printf, addr sepa
+    invoke printf, addr enca
+    invoke printf, addr sepa
+    invoke printf, addr msg_format, addr clt1, addr mes1, [nit], [mon], [iva]
+    invoke printf, addr msg_format, addr clt2, addr mes2, [nit + 4], [mon + 4], [iva + 4]
+    invoke printf, addr msg_format, addr clt3, addr mes3, [nit + 8], [mon + 8], [iva + 8]
+    invoke printf, addr msg_format, addr clt4, addr mes4, [nit + 12], [mon + 12], [iva + 12]
+    invoke printf, addr msg_format, addr clt5, addr mes5, [nit + 16], [mon + 16], [iva + 16 ]
+    invoke printf, addr msg_format, addr clt6, addr mes6, [nit + 20], [mon + 20], [iva + 20]
+    invoke printf, addr msg_format, addr clt7, addr mes7, [nit + 24], [mon + 24], [iva + 24]
+    invoke printf, addr msg_format, addr clt8, addr mes8, [nit + 28], [mon + 28], [iva + 28]
+    invoke printf, addr msg_format, addr clt9, addr mes9, [nit + 32], [mon + 32], [iva + 32]
+    invoke printf, addr msg_format, addr clt10, addr mes10, [nit + 36], [mon + 36], [iva + 36]
+    invoke printf, addr msg_format, addr clt11, addr mes11, [nit + 40], [mon + 40], [iva + 40]
+    invoke printf, addr msg_format, addr clt12, addr mes12, [nit + 44], [mon + 44], [iva + 44]
+
+
+
+
+
+   ; Suma de los montos
+    mov eax, 0
+    mov ecx, 12
+    mov esi, offset mon
+    add_loop:
+        add eax, [esi]
+        add esi, 4
+        loop add_loop
+    
+    mov montot, eax
+
+    ; Impresión del resultado
+    invoke printf, addr sepa
+    invoke printf, addr msg4, montot
 
 main endp
 end
