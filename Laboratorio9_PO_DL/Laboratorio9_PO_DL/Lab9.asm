@@ -82,8 +82,34 @@ msg_format BYTE    "| %-20s | %-12s | %-8d | %-10d | %-13d |", 0Ah, 0
 .code
 
 public main
-main proc
 
+main proc
+; Ciclo para ingresar los montos de las facturas
+    loop_cic:
+        mov esi, offset mon
+        mov edi, offset iva
+        inc x
+        invoke printf, addr monfrm, x
+        dec x
+
+        mov ebx, x
+        imul ebx, 4
+        invoke scanf, addr monscnfrm, addr [esi + ebx]
+        mov eax, [esi + ebx]
+
+        ; Cálculo del IVA
+        mov ecx, 5
+        mul ecx
+        mov ecx, 100
+        div ecx
+
+        add montot, eax
+
+        mov [edi + ebx], eax
+
+        inc x
+        cmp x, 12
+        jl loop_cic
 
 main endp
 end
